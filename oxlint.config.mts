@@ -6,7 +6,8 @@ import shadcn from 'ultracite/oxlint/shadcn'
 
 export default defineConfig({
   env: core.env,
-  extends: [core, react, next, shadcn],
+  // extends: [core, react, next, shadcn],
+  extends: [core, react, next],
   ignorePatterns: core.ignorePatterns,
   jsPlugins: shadcn.jsPlugins,
 })
