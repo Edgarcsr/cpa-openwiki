@@ -49,7 +49,7 @@ export default function ArticlePage() {
             </dl>
           </div>
         </aside>
-        <p className="text-muted-foreground formated text-justify text-sm">
+        <p className="text-muted-foreground formated space-y-3 text-justify text-sm">
           Alexandre de Campos Fernandes, nascido em{' '}
           <span className="text-foreground">1 de Fevereiro de 2004</span> é um
           membro ativo da <span className="text-foreground">C.P.A.</span> sendo

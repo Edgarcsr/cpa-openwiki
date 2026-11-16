@@ -3,7 +3,7 @@
 import createGlobe from 'cobe'
 import type { COBEOptions } from 'cobe'
 import { useMotionValue, useSpring } from 'motion/react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -38,6 +38,26 @@ const GLOBE_CONFIG: COBEOptions = {
   ],
 }
 
+const DARK_THEME_CONFIG: Partial<COBEOptions> = {
+  dark: 1,
+  diffuse: 1.2,
+  mapBrightness: 5,
+  baseColor: [0.22, 0.24, 0.3],
+  glowColor: [0.1, 0.12, 0.2],
+}
+
+const subscribeToThemeChange = (onChange: () => void) => {
+  const observer = new MutationObserver(onChange)
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class'],
+  })
+  return () => observer.disconnect()
+}
+
+const getIsDark = () => document.documentElement.classList.contains('dark')
+const getServerIsDark = () => false
+
 export function Globe({
   className,
   config,
@@ -47,6 +67,11 @@ export function Globe({
   config?: Partial<COBEOptions>
   speed?: number
 }) {
+  const isDark = useSyncExternalStore(
+    subscribeToThemeChange,
+    getIsDark,
+    getServerIsDark
+  )
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const phiRef = useRef(0)
   const widthRef = useRef(0)
@@ -87,6 +112,7 @@ export function Globe({
 
     const globe = createGlobe(canvasRef.current!, {
       ...GLOBE_CONFIG,
+      ...(isDark ? DARK_THEME_CONFIG : {}),
       ...config,
       width: widthRef.current * 2,
       height: widthRef.current * 2,
@@ -105,7 +131,7 @@ export function Globe({
       globe.destroy()
       window.removeEventListener('resize', onResize)
     }
-  }, [rs, config, speed])
+  }, [rs, config, speed, isDark])
 
   return (
     <div
