@@ -97,6 +97,35 @@ export default function ArticlePage() {
           responsável pelo{' '}
           <span className="text-foreground">Trabalho da Aceitação</span> e mais.
         </p>
+        <p className="text-muted-foreground formated mb-2 space-y-3 text-justify text-sm">
+          Depois do do ensino fundamental II, A turma de Alexandre foi para o
+          Ensino Médio no colégio Ábaco, porém alguns de seus colegas não
+          seguiram com ele, como{' '}
+          <span className="text-foreground">João Gutierrez</span> por exemplo.
+          Nesse tempo, foi quando ocorreu a Pandemia do Coronavirus, então
+          tiveram apenas alguns dias de aula antes de ser iniciada o período de
+          ensino remoto (EAD).
+        </p>
+        <p className="text-muted-foreground formated mb-2 space-y-3 text-justify text-sm">
+          Após o primeiro ano do Ensino médio ter sido completamente remoto, no
+          segundo ano, a escola implementou um período híbrido onde haviam 3
+          turmas, onde duas dessas turmas eram presenciais e uma era remota, e a
+          turma de Alexandre foi para a turma remota.
+        </p>
+        <p className="text-muted-foreground formated mb-2 space-y-3 text-justify text-sm">
+          Durante o ensino médio, houveram mais vídeos participatidos quanto os
+          outros anos por conta de trabalhos integrados, como{' '}
+          <span className="text-foreground">Integrado Cast - Coronavírus</span>,{' '}
+          <span className="text-foreground">Integrado Cast - Interstelar</span>,{' '}
+          <span className="text-foreground">Composição Radioativa</span>,{' '}
+          <span className="text-foreground">
+            Resenha Crítica - Harry Potter e a Ordem da Fênix
+          </span>{' '}
+          e <span className="text-foreground">Abaco Cultural - Olimpíadas</span>
+          .
+        </p>
+        <h1 className="text-md mt-5">Criação da C.P.A.</h1>
+        <Separator className="my-2" />
       </main>
       <Globe
         config={ARTICLE_GLOBE_CONFIG}
