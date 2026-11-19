@@ -21,8 +21,10 @@ const GithubIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-export const SiteHeader = () => (
-  <header className="border-b">
+export const SiteHeader = ({ overlay = false }: { overlay?: boolean }) => (
+  <header
+    className={cn('border-b', overlay && 'border-transparent text-white')}
+  >
     <div className="m-auto flex max-w-240 items-center justify-between px-8 py-3">
       <Link href="/" className="cursor-default">
         <Image
@@ -31,20 +33,31 @@ export const SiteHeader = () => (
           width={1545}
           height={222}
           priority
-          className="h-3.5 w-auto dark:invert"
+          className={cn(
+            'h-3.5 w-auto',
+            overlay ? 'brightness-0 invert' : 'dark:invert'
+          )}
         />
       </Link>
       <div className="flex items-center gap-2">
         <Button
           variant="ghost"
-          className="bg-muted hover:bg-muted/30 flex w-48 justify-start"
+          className={cn(
+            'flex w-48 justify-start',
+            overlay
+              ? 'bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 hover:text-white'
+              : 'bg-muted hover:bg-muted/30'
+          )}
         >
           <SearchIcon />
           Buscar
         </Button>
         <Separator
           orientation="vertical"
-          className="flex h-4 data-vertical:self-center"
+          className={cn(
+            'h-4 data-vertical:self-center',
+            overlay && 'bg-white/30'
+          )}
         />
         <a
           href={REPO_URL}
@@ -53,7 +66,8 @@ export const SiteHeader = () => (
           aria-label="Repositório do OpenWiki no GitHub"
           className={cn(
             buttonVariants({ variant: 'ghost', size: 'icon' }),
-            'cursor-default'
+            'cursor-default',
+            overlay && 'text-white hover:bg-white/15 hover:text-white'
           )}
         >
           <GithubIcon />
