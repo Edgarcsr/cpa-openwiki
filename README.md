@@ -1,3 +1,9 @@
+## Logo
+
+A logo do OpenWiki fica em [`public/openwiki-logo.svg`](public/openwiki-logo.svg).
+
+Ela foi fortemente inspirada no redesign da Wikipedia feito por Joaquin da Silva, publicado no Behance: [Wikipedia Rebranding](https://www.behance.net/gallery/101842737/Wikipedia-Rebranding). Os créditos da ideia original são dele; este projeto não tem afiliação com o autor nem com a Wikimedia Foundation.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
