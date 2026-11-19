@@ -1,5 +1,6 @@
 import type { COBEOptions } from 'cobe'
 
+import { Footer } from '@/components/footer'
 import { Globe } from '@/components/ui/globe'
 
 const ARTICLE_GLOBE_CONFIG: Partial<COBEOptions> = {
@@ -15,6 +16,7 @@ export default function ArticleLayout({
   return (
     <div>
       <main className="m-auto max-w-240 p-8">{children}</main>
+      <Footer />
       <Globe
         config={ARTICLE_GLOBE_CONFIG}
         speed={0.0005}
