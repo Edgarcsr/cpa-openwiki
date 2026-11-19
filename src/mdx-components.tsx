@@ -4,6 +4,12 @@ import { ArticleHeader } from '@/components/article-header'
 import { Infobox } from '@/components/infobox'
 import { Separator } from '@/components/ui/separator'
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from './components/ui/hover-card'
+
 export const useMDXComponents = (components: MDXComponents): MDXComponents => ({
   ArticleHeader,
   Infobox,
@@ -22,9 +28,19 @@ export const useMDXComponents = (components: MDXComponents): MDXComponents => ({
   // Por enquanto renderiza igual ao antigo <span>, sem link real (evita 404).
   a: ({ children }) => (
     // <span className="text-foreground decoration-muted-foreground/30 hover:decoration-foreground cursor-default underline">
-    <span className="text-foreground cursor-default hover:underline">
-      {children}
-    </span>
+    <HoverCard>
+      <HoverCardTrigger>
+        <span className="text-foreground cursor-default hover:underline">
+          {children}
+        </span>
+      </HoverCardTrigger>
+      <HoverCardContent className="flex w-64 flex-col gap-0.5">
+        <div className="text-foreground text-sm font-semibold">Artigo</div>
+        <div className="text-muted-foreground text-xs">
+          Conteúdo do artigo em breve.
+        </div>
+      </HoverCardContent>
+    </HoverCard>
   ),
   ...components,
 })
