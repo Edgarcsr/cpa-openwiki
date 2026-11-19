@@ -1,15 +1,20 @@
-export const metadata = {
-  title: 'Alexandre de Campos Fernandes',
-  image: {
+export const metadata = { title: 'Alexandre de Campos Fernandes' }
+
+<ArticleHeader title={metadata.title} />
+
+<Infobox
+  title={metadata.title}
+  image={{
     src: '/alexandre-fernandes.webp',
     alt: 'Alexandre de Campos Fernandes',
-  },
-  infobox: [
+  }}
+  rows={[
     ['Nascimento', '1 de Fevereiro de 2004'],
     ['Instituição', 'UFSCar'],
     ['Curso', 'Biologia'],
-  ],
-}
+  ]}
+/>
+
 
 Alexandre de Campos Fernandes, nascido em [1 de Fevereiro de 2004](/article/2004-02-01) é um membro ativo da [C.P.A.](/article/cpa) sendo considerado o fundador da organização. Atualmente cursa Biologia na Universidade Federal de São Carlos (UFSCar), tendo diploma de Biologia Marinha.
 

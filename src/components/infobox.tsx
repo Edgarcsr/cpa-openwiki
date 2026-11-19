@@ -8,7 +8,7 @@ export const Infobox = ({
   rows,
 }: {
   title: string
-  image: ArticleMetadata['image']
+  image: { src: string; alt: string }
   rows: ArticleMetadata['infobox']
 }) => (
   <aside className="bg-muted/50 mb-4 w-full overflow-hidden rounded-md border text-sm md:float-right md:mb-4 md:ml-4 md:w-72">
