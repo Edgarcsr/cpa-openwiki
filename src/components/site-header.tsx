@@ -45,7 +45,7 @@ export const SiteHeader = ({ overlay = false }: { overlay?: boolean }) => (
           className={cn(
             'flex w-48 justify-start',
             overlay
-              ? 'bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 hover:text-white'
+              ? 'bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 hover:text-white dark:hover:bg-white/25'
               : 'bg-muted hover:bg-muted/30'
           )}
         >
@@ -67,7 +67,8 @@ export const SiteHeader = ({ overlay = false }: { overlay?: boolean }) => (
           className={cn(
             buttonVariants({ variant: 'ghost', size: 'icon' }),
             'cursor-default',
-            overlay && 'text-white hover:bg-white/15 hover:text-white'
+            overlay &&
+              'text-white hover:bg-white/25 hover:text-white dark:hover:bg-white/25'
           )}
         >
           <GithubIcon />

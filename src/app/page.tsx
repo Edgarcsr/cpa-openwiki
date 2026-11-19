@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Footer } from '@/components/footer'
+import { HourlyBanner } from '@/components/hourly-banner'
 import { SiteHeader } from '@/components/site-header'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -22,15 +23,8 @@ const FEATURED_ARTICLE = {
 export default function Home() {
   return (
     <>
-      <section className="relative h-112 w-full overflow-hidden text-white">
-        <Image
-          src="/banner.png"
-          alt=""
-          className="object-cover object-center"
-          fill
-          priority
-          sizes="100vw"
-        />
+      <section className="relative h-112 w-full overflow-hidden bg-zinc-800 text-white">
+        <HourlyBanner />
         <div
           aria-hidden
           className="absolute inset-0 bg-linear-to-b from-black/50 via-black/10 to-black/70"
@@ -77,7 +71,7 @@ export default function Home() {
               width={1080}
               height={1080}
               sizes="(min-width: 640px) 224px, 100vw"
-              className="h-auto w-full"
+              className="h-auto w-full bg-zinc-800"
             />
           </div>
           <h3 className="text-base font-medium group-hover:underline">
