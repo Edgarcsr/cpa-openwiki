@@ -1,6 +1,7 @@
 import type { COBEOptions } from 'cobe'
 
 import { Footer } from '@/components/footer'
+import { SiteHeader } from '@/components/site-header'
 import { Globe } from '@/components/ui/globe'
 
 const ARTICLE_GLOBE_CONFIG: Partial<COBEOptions> = {
@@ -15,6 +16,7 @@ export default function ArticleLayout({
 }) {
   return (
     <div>
+      <SiteHeader />
       <main className="m-auto max-w-240 p-8">{children}</main>
       <Footer />
       <Globe
