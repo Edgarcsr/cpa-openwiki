@@ -1,6 +1,5 @@
 import Image from 'next/image'
-
-import type { ArticleMetadata } from '@/lib/article'
+import type { StaticImageData } from 'next/image'
 
 export const Infobox = ({
   title,
@@ -8,17 +7,11 @@ export const Infobox = ({
   rows,
 }: {
   title: string
-  image: { src: string; alt: string }
-  rows: ArticleMetadata['infobox']
+  image: { src: StaticImageData; alt: string }
+  rows: [label: string, value: string][]
 }) => (
   <aside className="bg-muted/50 mb-4 w-full overflow-hidden rounded-md border text-sm md:float-right md:mb-4 md:ml-4 md:w-72">
-    <Image
-      src={image.src}
-      alt={image.alt}
-      className="mx-auto"
-      width={400}
-      height={400}
-    />
+    <Image src={image.src} alt={image.alt} className="mx-auto h-auto w-full" />
     <div className="p-4">
       <h2 className="mb-2 text-center font-medium">{title}</h2>
       <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1">

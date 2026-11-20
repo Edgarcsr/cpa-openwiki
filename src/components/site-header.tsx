@@ -2,12 +2,13 @@ import { SearchIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { openwikiConfig } from '#content/openwiki.config'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 import { Separator } from './ui/separator'
 
-const REPO_URL = 'https://github.com/Edgarcsr/openwiki'
+const REPO_URL = openwikiConfig.repo.url
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg
@@ -29,7 +30,7 @@ export const SiteHeader = ({ overlay = false }: { overlay?: boolean }) => (
       <Link href="/" className="cursor-default">
         <Image
           src="/openwiki-logo.svg"
-          alt="OpenWiki"
+          alt={openwikiConfig.name}
           width={1545}
           height={222}
           priority
@@ -63,7 +64,7 @@ export const SiteHeader = ({ overlay = false }: { overlay?: boolean }) => (
           href={REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Repositório do OpenWiki no GitHub"
+          aria-label={`Repositório do ${openwikiConfig.name} no GitHub`}
           className={cn(
             buttonVariants({ variant: 'ghost', size: 'icon' }),
             'cursor-default',

@@ -1,7 +1,9 @@
 import { cacheLife } from 'next/cache'
 import Image from 'next/image'
 
-import { BANNERS } from '@/lib/banners'
+import { openwikiConfig } from '#content/openwiki.config'
+
+const BANNERS = openwikiConfig.banners
 
 const HOUR_IN_MS = 60 * 60 * 1000
 const FIVE_MINUTES_IN_SECONDS = 5 * 60

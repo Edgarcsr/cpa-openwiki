@@ -1,18 +1,13 @@
 import type { MDXComponents } from 'mdx/types'
 
-import { ArticleHeader } from '@/components/article-header'
-import { Infobox } from '@/components/infobox'
-import { Separator } from '@/components/ui/separator'
-
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from './components/ui/hover-card'
+} from '@/components/ui/hover-card'
+import { Separator } from '@/components/ui/separator'
 
 export const useMDXComponents = (components: MDXComponents): MDXComponents => ({
-  ArticleHeader,
-  Infobox,
   h2: ({ children }) => (
     <>
       <h2 className="text-md mt-5">{children}</h2>

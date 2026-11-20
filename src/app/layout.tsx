@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 
+import { openwikiConfig } from '#content/openwiki.config'
+
 import './globals.css'
 
 const geistSans = Geist({
@@ -15,17 +17,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Openwiki',
-    template: '%s | Openwiki',
+    default: openwikiConfig.name,
+    template: `%s | ${openwikiConfig.name}`,
   },
-  description:
-    'Open source knowledge base for your team, built on top of Next.js and Tailwind CSS.',
+  description: openwikiConfig.description,
 }
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
-      lang="en"
+      lang={openwikiConfig.locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">{children}</body>

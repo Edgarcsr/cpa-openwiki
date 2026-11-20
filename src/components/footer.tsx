@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { openwikiConfig } from '#content/openwiki.config'
 import { Separator } from '@/components/ui/separator'
 
 // const FOOTER_LINKS = [] as const
@@ -11,13 +12,13 @@ export const Footer = () => (
       <div className="flex items-center gap-3">
         <Image
           src="/openwiki-logo.svg"
-          alt="OpenWiki"
+          alt={openwikiConfig.name}
           width={1545}
           height={222}
           className="h-3 w-auto"
         />
         <span className="text-muted-foreground text-xs">
-          Uma enciclopédia aberta e feita em comunidade.
+          {openwikiConfig.description}
         </span>
       </div>
     </div>
