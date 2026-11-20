@@ -17,8 +17,8 @@ export const openwikiConfig = {
   // Repositório que guarda o conteúdo (usado no botão de editar e no link do
   // GitHub do cabeçalho).
   repo: {
-    url: 'https://github.com/Edgarcsr/openwiki',
-    branch: 'master',
+    url: 'https://github.com/Edgarcsr/cpa-openwiki',
+    branch: 'main',
     // Pasta do conteúdo dentro do repo acima. Use '' se o repo for só de
     // conteúdo (articles/ na raiz).
     contentDir: 'content',
