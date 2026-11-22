@@ -1,6 +1,5 @@
 import { CogIcon } from 'lucide-react'
 import type { Metadata } from 'next'
-import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
 
@@ -12,13 +11,13 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui/empty'
-import { getSession } from '@/lib/session'
+import { getRequestSession } from '@/lib/session'
 
 export const metadata: Metadata = { title: 'Configurações' }
 
 // Só para quem está logado; visitante vai para o login.
 const SessionGuard = async () => {
-  const session = await getSession(await headers())
+  const session = await getRequestSession()
   if (!session) {
     redirect('/sign-in')
   }

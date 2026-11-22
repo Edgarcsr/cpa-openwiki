@@ -1,5 +1,4 @@
 import { SearchIcon } from 'lucide-react'
-import { headers } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
@@ -7,18 +6,18 @@ import { Suspense } from 'react'
 import { openwikiConfig } from '#content/openwiki.config'
 import { HeaderSidebarTrigger, HeaderSignIn } from '@/components/header-session'
 import { Button } from '@/components/ui/button'
-import { getSession } from '@/lib/session'
+import { getRequestSession } from '@/lib/session'
 import { cn } from '@/lib/utils'
 
 // A sessão é lida no servidor (dentro de Suspense), então o botão de menu e o
 // "Entrar" já chegam certos no HTML, sem piscar.
 const SessionTrigger = async ({ overlay }: { overlay: boolean }) => {
-  const session = await getSession(await headers())
+  const session = await getRequestSession()
   return session ? <HeaderSidebarTrigger overlay={overlay} /> : null
 }
 
 const SessionSignIn = async ({ overlay }: { overlay: boolean }) => {
-  const session = await getSession(await headers())
+  const session = await getRequestSession()
   return session ? null : <HeaderSignIn overlay={overlay} />
 }
 

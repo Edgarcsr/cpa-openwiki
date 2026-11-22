@@ -1,15 +1,14 @@
-import { headers } from 'next/headers'
 import { Suspense } from 'react'
 
 import { AppSidebar } from '@/components/app-sidebar'
 import { SidebarProvider } from '@/components/ui/sidebar'
-import { getSession } from '@/lib/session'
+import { getRequestSession } from '@/lib/session'
 
 // Decide no servidor se há sessão, então a sidebar já chega no HTML (sem
 // "piscar" depois que a página carrega). Entrar e sair chamam
 // router.refresh(), que refaz esta parte.
 const SessionSidebar = async () => {
-  const session = await getSession(await headers())
+  const session = await getRequestSession()
   if (!session) {
     return null
   }
