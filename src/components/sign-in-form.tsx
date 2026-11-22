@@ -1,94 +1,44 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { authClient } from '@/lib/auth-client'
+import { AccountForm } from '@/components/account-form'
+import type { AccountMode } from '@/components/account-form'
 
-type Mode = 'sign-in' | 'sign-up'
+const COPY = {
+  'sign-in': {
+    title: 'Entrar',
+    text: 'Entre para propor páginas novas e edições.',
+    submit: 'Entrar',
+    toggle: 'Ainda não tenho conta',
+  },
+  'sign-up': {
+    title: 'Criar conta',
+    text: 'Com uma conta você pode propor páginas novas e edições.',
+    submit: 'Criar conta',
+    toggle: 'Já tenho conta',
+  },
+} as const
 
-const FALLBACK_ERROR = 'Não foi possível entrar. Confira os dados.'
-
+// Entrar ou criar conta, com o mesmo visual da criação do administrador.
 export const SignInForm = () => {
-  const router = useRouter()
-  const [mode, setMode] = useState<Mode>('sign-in')
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
-  const [busy, setBusy] = useState(false)
-
-  const isSignUp = mode === 'sign-up'
-
-  const handleSubmit = async () => {
-    setBusy(true)
-    setError(null)
-    const { error: authError } = isSignUp
-      ? await authClient.signUp.email({ name, email, password })
-      : await authClient.signIn.email({ email, password })
-    setBusy(false)
-    if (authError) {
-      setError(authError.message ?? FALLBACK_ERROR)
-      return
-    }
-    router.push('/')
-    router.refresh()
-  }
+  const [mode, setMode] = useState<AccountMode>('sign-in')
+  const copy = COPY[mode]
 
   return (
-    <form
-      className="flex max-w-sm flex-col gap-3"
-      onSubmit={(event) => {
-        event.preventDefault()
-        handleSubmit()
-      }}
-    >
-      {isSignUp && (
-        <Input
-          aria-label="Nome"
-          placeholder="Nome"
-          autoComplete="name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          required
-        />
-      )}
-      <Input
-        type="email"
-        aria-label="E-mail"
-        placeholder="E-mail"
-        autoComplete="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-        required
-      />
-      <Input
-        type="password"
-        aria-label="Senha"
-        placeholder="Senha (mínimo 8 caracteres)"
-        autoComplete={isSignUp ? 'new-password' : 'current-password'}
-        minLength={8}
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-        required
-      />
-      {error && (
-        <p role="alert" className="text-destructive text-sm">
-          {error}
-        </p>
-      )}
-      <Button type="submit" disabled={busy}>
-        {isSignUp ? 'Criar conta' : 'Entrar'}
-      </Button>
+    <>
+      <h1 className="text-center text-lg font-medium">{copy.title}</h1>
+      <p className="text-muted-foreground mt-1 mb-6 text-center text-xs leading-relaxed">
+        {copy.text}
+      </p>
+      <AccountForm key={mode} mode={mode} submitLabel={copy.submit} />
       <button
         type="button"
-        className="text-muted-foreground cursor-default text-left text-sm hover:underline"
-        onClick={() => setMode(isSignUp ? 'sign-in' : 'sign-up')}
+        className="text-muted-foreground mt-4 block w-full cursor-default text-center text-sm hover:underline"
+        onClick={() => setMode(mode === 'sign-in' ? 'sign-up' : 'sign-in')}
       >
-        {isSignUp ? 'Já tenho conta' : 'Ainda não tenho conta'}
+        {copy.toggle}
       </button>
-    </form>
+    </>
   )
 }

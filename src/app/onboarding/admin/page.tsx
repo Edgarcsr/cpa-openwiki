@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { connection } from 'next/server'
 import { Suspense } from 'react'
 
-import { AdminSetupForm } from '@/components/admin-setup-form'
+import { AccountForm } from '@/components/account-form'
 import { hasUsers } from '@/lib/auth'
 
 export const metadata: Metadata = { title: 'Criar conta de administrador' }
@@ -36,7 +36,7 @@ const AdminSetupPage = () => (
         Esta é a primeira conta da wiki e terá acesso total: publicar direto,
         aceitar propostas e exportar o backup.
       </p>
-      <AdminSetupForm />
+      <AccountForm mode="sign-up" submitLabel="Criar conta de administrador" />
     </div>
     <Suspense fallback={null}>
       <SetupGuard />
