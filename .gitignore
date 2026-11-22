@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# self-host: banco de autenticação e propostas pendentes
+/data
+/content/proposals

@@ -1,18 +1,3 @@
-import foto from './foto.webp'
-
-export const metadata = {
-  title: 'Alexandre de Campos Fernandes',
-  category: 'member',
-  summary:
-    'Membro ativo da C.P.A. e considerado o fundador da organização. Cursa Biologia na UFSCar e tem diploma em Biologia Marinha.',
-  image: { src: foto, alt: 'Alexandre de Campos Fernandes' },
-  infobox: [
-    ['Nascimento', '1 de Fevereiro de 2004'],
-    ['Instituição', 'UFSCar'],
-    ['Curso', 'Biologia'],
-  ],
-}
-
 Alexandre de Campos Fernandes, nascido em [1 de Fevereiro de 2004](/article/2004-02-01) é um membro ativo da [C.P.A.](/article/cpa) sendo considerado o fundador da organização. Atualmente cursa Biologia na Universidade Federal de São Carlos (UFSCar), tendo diploma de Biologia Marinha.
 
 Durante seu período na UFSCar, Alexandre recebeu a alcunha de [“Roleta“](/article/roleta), bem como seus amigos [“Voto“](/article/voto) (de voto de silêncio) e [“Sem Parar“](/article/sem-parar) (porque ele não parava de falar).

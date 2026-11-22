@@ -14,15 +14,6 @@ export const openwikiConfig = {
     subtitle:
       'Conte a história das pessoas, dos lugares e dos momentos que importam, do seu jeito e em qualquer idioma.',
   },
-  // Repositório que guarda o conteúdo (usado no botão de editar e no link do
-  // GitHub do cabeçalho).
-  repo: {
-    url: 'https://github.com/Edgarcsr/cpa-openwiki',
-    branch: 'main',
-    // Pasta do conteúdo dentro do repo acima. Use '' se o repo for só de
-    // conteúdo (articles/ na raiz).
-    contentDir: 'content',
-  },
   // Slug de um artigo em content/articles/.
   featuredArticle: 'alexandre-fernandes',
   banners: [bannerDefault, bannerA, bannerB, bannerC],

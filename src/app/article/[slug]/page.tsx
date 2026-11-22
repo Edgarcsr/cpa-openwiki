@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+import { ArticleBody } from '@/components/article-body'
 import { ArticleHeader } from '@/components/article-header'
 import { Infobox } from '@/components/infobox'
 import { getArticle, listArticleSlugs } from '@/lib/article'
@@ -9,13 +10,15 @@ interface ArticlePageProps {
   params: Promise<{ slug: string }>
 }
 
-// Todos os slugs são pré-renderizados, então a página já é estática. Isto só
-// desliga o aviso de dev sobre ler `params` fora de <Suspense>.
+// Artigos novos entram em runtime (sem rebuild), então `params` é lido na
+// requisição. Isto desliga o aviso de dev sobre ler `params` fora de <Suspense>.
 export const instant = false
 
-// Uma página estática por pasta em content/articles/.
-export const generateStaticParams = () =>
-  listArticleSlugs().map((slug) => ({ slug }))
+// Pré-renderiza os artigos que já existem; os demais são gerados sob demanda.
+export const generateStaticParams = async () => {
+  const slugs = await listArticleSlugs()
+  return slugs.map((slug) => ({ slug }))
+}
 
 export const generateMetadata = async ({
   params,
@@ -33,13 +36,13 @@ const ArticlePage = async ({ params }: ArticlePageProps) => {
     notFound()
   }
 
-  const { Content, title, image, infobox } = article
+  const { body, title, image, infobox } = article
 
   return (
     <>
       <ArticleHeader title={title} slug={slug} />
       <Infobox title={title} image={image} rows={infobox} />
-      <Content />
+      <ArticleBody body={body} />
     </>
   )
 }
