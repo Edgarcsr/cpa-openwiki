@@ -1,9 +1,22 @@
 import { ArrowRightIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { connection } from 'next/server'
+import { Suspense } from 'react'
 
 import { buttonVariants } from '@/components/ui/button'
+import { hasUsers } from '@/lib/auth'
 import { cn } from '@/lib/utils'
+
+// Só existe enquanto não há nenhum usuário; depois disso, volta para o login.
+const SetupGuard = async () => {
+  await connection()
+  if (hasUsers()) {
+    redirect('/sign-in')
+  }
+  return null
+}
 
 export default function OnboardingPage() {
   return (
@@ -44,7 +57,7 @@ export default function OnboardingPage() {
         </p>
         <div className="flex flex-wrap items-center gap-4">
           <Link
-            href="/article/alexandre-fernandes"
+            href="/onboarding/admin"
             className={cn(
               buttonVariants({ size: 'default' }),
               'min-w-48 cursor-default justify-between rounded-md bg-white text-black hover:bg-white/90'
@@ -61,6 +74,9 @@ export default function OnboardingPage() {
           </Link>
         </div>
       </div>
+      <Suspense fallback={null}>
+        <SetupGuard />
+      </Suspense>
     </main>
   )
 }
