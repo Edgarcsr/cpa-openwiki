@@ -8,14 +8,11 @@ import {
   HouseIcon,
   InboxIcon,
   LogOutIcon,
-  PanelLeftCloseIcon,
-  PanelLeftOpenIcon,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
-import { TooltipButton } from '@/components/tooltip-button'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import {
   DropdownMenu,
@@ -39,8 +36,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-  useSidebar,
+  SidebarTrigger,
 } from '@/components/ui/sidebar'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import { useJson } from '@/components/use-json'
 import { authClient } from '@/lib/auth-client'
 import { canModerate } from '@/lib/roles'
@@ -176,25 +178,6 @@ const NavUser = ({ user }: { user: SidebarUser }) => {
   )
 }
 
-// Recolhe a sidebar para a faixa de ícones (ou expande de volta). Atalho:
-// Ctrl/Cmd + B.
-const CollapseButton = () => {
-  const { state, toggleSidebar } = useSidebar()
-  const collapsed = state === 'collapsed'
-  return (
-    <TooltipButton
-      label={collapsed ? 'Expandir menu' : 'Recolher menu'}
-      side="right"
-      variant="ghost"
-      size="icon-sm"
-      className="cursor-default"
-      onClick={toggleSidebar}
-    >
-      {collapsed ? <PanelLeftOpenIcon /> : <PanelLeftCloseIcon />}
-    </TooltipButton>
-  )
-}
-
 // Só é renderizada para quem está logado (ver app-shell.tsx).
 export const AppSidebar = ({ user }: { user: SidebarUser }) => {
   const pathname = usePathname()
@@ -203,7 +186,7 @@ export const AppSidebar = ({ user }: { user: SidebarUser }) => {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <div className="flex items-center justify-between gap-1">
+        <div className="flex items-center justify-between">
           <Link
             href="/"
             className="flex h-8 cursor-default items-center px-2 group-data-[collapsible=icon]:hidden"
@@ -216,7 +199,21 @@ export const AppSidebar = ({ user }: { user: SidebarUser }) => {
               className="h-3.5 w-auto dark:invert"
             />
           </Link>
-          <CollapseButton />
+          {/* Fica na sidebar (fixa) para sempre dar para recolher/expandir, mesmo
+              com o cabeçalho da página rolado para fora da tela. */}
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <SidebarTrigger
+                  aria-label="Recolher ou expandir o menu"
+                  className="cursor-default group-data-[collapsible=icon]:mx-auto"
+                />
+              }
+            />
+            <TooltipContent side="right">
+              Recolher / expandir (Ctrl+B)
+            </TooltipContent>
+          </Tooltip>
         </div>
       </SidebarHeader>
       <SidebarContent>
