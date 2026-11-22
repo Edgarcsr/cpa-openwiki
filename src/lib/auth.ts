@@ -34,8 +34,15 @@ export const hasUsers = () => countUsers() > 0
 // dono, sempre pode se cadastrar).
 const signupClosed = process.env.OPENWIKI_SIGNUP === 'closed'
 
+// O Better Auth só aceita pedidos vindos da própria URL do site. Em
+// desenvolvimento aceitamos também 127.0.0.1; em produção use
+// BETTER_AUTH_TRUSTED_ORIGINS (separado por vírgula) para outros endereços.
+const DEV_ORIGINS = ['http://127.0.0.1:*', 'http://localhost:*']
+
 export const authOptions = {
   database,
+  trustedOrigins:
+    process.env.NODE_ENV === 'production' ? undefined : DEV_ORIGINS,
   emailAndPassword: { enabled: true, minPasswordLength: 8 },
   user: {
     additionalFields: {

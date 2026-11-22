@@ -43,12 +43,15 @@ const ERROR_MESSAGES: Record<string, string> = {
   USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL: 'Já existe uma conta com esse e-mail.',
   PASSWORD_TOO_SHORT: 'A senha precisa ter no mínimo 8 caracteres.',
   PASSWORD_TOO_LONG: 'A senha é muito longa.',
+  INVALID_ORIGIN:
+    'Endereço de acesso não permitido. Abra o site pelo endereço configurado (BETTER_AUTH_URL).',
 }
 
 const errorMessage = (error: { code?: string; status?: number }) => {
   if (error.code && ERROR_MESSAGES[error.code]) {
     return ERROR_MESSAGES[error.code]
   }
+  // 403 sem código conhecido: o servidor recusa cadastros (OPENWIKI_SIGNUP=closed).
   if (error.status === FORBIDDEN_STATUS) {
     return 'Os cadastros estão fechados.'
   }
