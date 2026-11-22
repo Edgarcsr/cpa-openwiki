@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 
 import { openwikiConfig } from '#content/openwiki.config'
+import { AppShell } from '@/components/app-shell'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 import './globals.css'
 
@@ -29,7 +31,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       lang={openwikiConfig.locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="min-h-full">
+        <TooltipProvider>
+          <AppShell>{children}</AppShell>
+        </TooltipProvider>
+      </body>
     </html>
   )
 }
